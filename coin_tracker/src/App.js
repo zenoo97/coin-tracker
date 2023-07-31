@@ -5,13 +5,12 @@ function App() {
   const [coins, setCoins] = useState([]);
   const [money, setMoney] = useState(0);
   const [buycoin, setBuycoin] = useState(0);
+  const [coinState, setCoinState] = useState(true);
   const onChangeMoney = (event) => {
     setMoney(event.target.value);
   };
-  const onSubmitMoney = (event) => {
-    event.preventDefault();
-  };
   const onChangeCoin = (event) => {
+    setCoinState(false);
     setBuycoin(event.target.value.split(" ")[3]);
   };
   useEffect(() => {
@@ -32,7 +31,7 @@ function App() {
         onChange={onChangeMoney}
       />
 
-      <h1>{money / buycoin}</h1>
+      <h1>{coinState ? "" : money / buycoin}</h1>
       <h1>The Coins! {loading ? "" : `(${coins.length})`} </h1>
       {loading ? (
         <strong>Loading...</strong>
